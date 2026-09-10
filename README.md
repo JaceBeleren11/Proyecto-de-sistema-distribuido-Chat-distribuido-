@@ -34,6 +34,7 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 
 ### Diagrama de arquitectura
 
+Imagen del diagrama aqui <--------------------------------------------
 
 - El **cliente** puede conectarse a cualquiera de los 5 nodos.
 - Cada **nodo** corre en su propio puerto (5001–5005) o contenedor.
