@@ -34,7 +34,6 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 
 ### Diagrama de arquitectura
 
-![Arquitectura NodeMesh](docs/arquitectura.png)
 
 - El **cliente** puede conectarse a cualquiera de los 5 nodos.
 - Cada **nodo** corre en su propio puerto (5001–5005) o contenedor.
@@ -46,13 +45,4 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 <img width="1483" height="762" alt="Captura de pantalla 2026-09-10 183323" src="https://github.com/user-attachments/assets/ec973602-14c2-4b3c-b0e1-276670913526" />
 
 ## Cómo correr el proyecto
-*(se completará en las siguientes sesiones)*
-
-## Características de Unidad I cubiertas
-| Tema visto en clase | Cómo aparece en el proyecto |
-|---|---|
-| Características de un SD | Concurrencia (varios usuarios chateando a la vez), transparencia (el cliente no sabe a qué nodo está conectado), tolerancia a fallos |
-| Escalabilidad | Escalado horizontal: agregar más nodos y repartir la carga |
-| Modelo arquitectónico | Cliente-servidor, con nodos replicados |
-| Modelo fundamental | Procesos independientes (cada nodo), comunicación por red, roles cliente/servidor |
-| Tipos de sistemas distribuidos | Sistema de mensajería en tiempo real |
+...
