@@ -34,7 +34,7 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 
 ### Diagrama de arquitectura
 
-Imagen del diagrama aqui <--------------------------------------------
+<img width="2114" height="1409" alt="Nodos de Diagrama Secuencial" src="https://github.com/user-attachments/assets/c95ff2ad-a442-4a7c-9fbd-d380dc5074f7" />
 
 - El **cliente** puede conectarse a cualquiera de los 5 nodos.
 - Cada **nodo** corre en su propio puerto (5001–5005) o contenedor.
