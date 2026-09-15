@@ -4,11 +4,11 @@
 Proyecto integrador de Sistemas Distribuidos: un chat construido sobre varios nodos independientes que se reparten la carga, replican mensajes entre sí y siguen funcionando aunque uno de ellos falle.
 
 ## Equipo
-- Luis Guillermo Mejenes Chacon 1 — Nodo A
-- Jorge Enrique Soberanes Espinosa 2 — Nodo B
-- Angelo Mendoza Garcia 3 — Nodo C
-- Diego Alonso Lopez Ballesta 4 — Nodo D
-- Diego Angel Vazquez Contreras 5 — Nodo E
+- Luis Guillermo Mejenes Chacon — Nodo A
+- Jorge Enrique Soberanes Espinosa — Nodo B
+- Angelo Mendoza Garcia — Nodo C
+- Diego Alonso Lopez Ballesta — Nodo D
+- Diego Angel Vazquez Contreras — Nodo E
 
 ## Stack tecnológico
 - Python 3
