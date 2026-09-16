@@ -4,10 +4,10 @@ import os
 
 app = Flask(__name__)
 
-# Nombre de este nodo (útil ya en la sesión 3 cuando haya varios)
+# Nombre de este nodo
 NODE_NAME = os.environ.get("NODE_NAME", "Nodo A")
 
-# "Base de datos" en memoria: lista de mensajes
+# lista de mensajes
 messages = []
 
 
