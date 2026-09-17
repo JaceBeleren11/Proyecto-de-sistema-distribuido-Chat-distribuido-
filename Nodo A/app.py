@@ -1,14 +1,30 @@
 from flask import Flask, request, jsonify
 from datetime import datetime
 import os
+import uuid
+import requests
 
 app = Flask(__name__)
 
 # Nombre de este nodo
 NODE_NAME = os.environ.get("NODE_NAME", "Nodo A")
 
-# lista de mensajes
+# Lista de vecinos (otros nodos), separados por coma en la variable de entorno
+# Ejemplo: NEIGHBORS="http://localhost:5002,http://localhost:5003"
+NEIGHBORS = [n for n in os.environ.get("NEIGHBORS", "").split(",") if n]
+
+# "Base de datos" en memoria: lista de mensajes
 messages = []
+
+
+def replicate_to_neighbors(message):
+    """Envía el mensaje a cada nodo vecino. Si un vecino está caído, lo ignora
+    y sigue con los demás (esto es la tolerancia a fallos)."""
+    for neighbor in NEIGHBORS:
+        try:
+            requests.post(f"{neighbor}/replicate", json=message, timeout=2)
+        except requests.exceptions.RequestException as e:
+            print(f"[{NODE_NAME}] No se pudo replicar a {neighbor}: {e}")
 
 
 @app.route("/health", methods=["GET"])
@@ -26,17 +42,37 @@ def post_message():
         return jsonify({"error": "Se requiere 'user' y 'text' en el body"}), 400
 
     message = {
-        "id": len(messages) + 1,
+        "id": str(uuid.uuid4()),
         "user": data["user"],
         "text": data["text"],
         "timestamp": datetime.utcnow().isoformat(),
-        "node": NODE_NAME,
+        "origin_node": NODE_NAME,
     }
 
     messages.append(message)
     print(f"[{NODE_NAME}] Mensaje guardado: {message}")
 
+    # Replicar el mensaje a los demás nodos
+    replicate_to_neighbors(message)
+
     return jsonify(message), 201
+
+
+@app.route("/replicate", methods=["POST"])
+def replicate_message():
+    """Recibe un mensaje ya creado por otro nodo y lo guarda, sin volver
+    a replicarlo (evita el bucle infinito entre nodos)."""
+    message = request.get_json(silent=True)
+
+    if not message or "id" not in message:
+        return jsonify({"error": "Mensaje inválido"}), 400
+
+    # Evitar duplicados si el mensaje ya llegó antes
+    if not any(m["id"] == message["id"] for m in messages):
+        messages.append(message)
+        print(f"[{NODE_NAME}] Mensaje replicado recibido: {message}")
+
+    return jsonify({"status": "replicated"}), 200
 
 
 @app.route("/messages", methods=["GET"])
