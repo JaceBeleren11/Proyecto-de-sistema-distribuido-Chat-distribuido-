@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify # type: ignore
 from datetime import datetime
 import os
 import uuid
-import requests
+import requests # type: ignore
 
 app = Flask(__name__)
 
@@ -31,6 +31,34 @@ def replicate_to_neighbors(message):
 def health():
     """Endpoint simple para saber si el nodo está vivo."""
     return jsonify({"status": "ok", "node": NODE_NAME}), 200
+
+@app.route("/sync", methods=["GET"])
+def sync():
+    """Le pide el historial completo a los vecinos y se pone al día.
+    Se llama manualmente (o al arrancar) cuando el nodo estuvo caído
+    y se quiere recuperar los mensajes que se perdió."""
+    synced_count = 0
+    for neighbor in NEIGHBORS:
+        try:
+            resp = requests.get(f"{neighbor}/messages", timeout=3)
+            if resp.status_code == 200:
+                neighbor_messages = resp.json().get("messages", [])
+                for msg in neighbor_messages:
+                    if not any(m["id"] == msg["id"] for m in messages):
+                        messages.append(msg)
+                        synced_count += 1
+        except requests.exceptions.RequestException as e:
+            print(f"[{NODE_NAME}] No se pudo sincronizar con {neighbor}: {e}")
+
+    # Reordenar por fecha para que el historial quede cronológico
+    messages.sort(key=lambda m: m["timestamp"])
+
+    return jsonify({
+        "status": "synced",
+        "node": NODE_NAME,
+        "new_messages_added": synced_count,
+        "total_messages": len(messages)
+    }), 200
 
 
 @app.route("/messages", methods=["POST"])
