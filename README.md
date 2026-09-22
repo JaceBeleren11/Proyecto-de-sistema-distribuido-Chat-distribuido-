@@ -46,4 +46,58 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 <img width="1483" height="762" alt="Captura de pantalla 2026-09-10 183323" src="https://github.com/user-attachments/assets/ec973602-14c2-4b3c-b0e1-276670913526" />
 
 ## Cómo correr el proyecto
-...
+## Endpoints
+
+| Método | Ruta         | Descripción                                              |
+|--------|-------------|-----------------------------------------------------------|
+| GET    | `/health`    | Verifica que el nodo está vivo                            |
+| POST   | `/messages`  | Recibe un mensaje nuevo del cliente y lo replica al resto |
+| GET    | `/messages`  | Devuelve todos los mensajes guardados en este nodo        |
+| POST   | `/replicate` | Recibe un mensaje ya creado por otro nodo (uso interno)   |
+| GET    | `/sync`      | Recupera el historial de los vecinos tras una caída       |
+
+## Cómo correr un nodo
+
+1. Instalar dependencias:
+```bash
+   cd "Nodo A"          # o Nodo B, C, D, E según corresponda
+   python -m venv venv
+   source venv/bin/activate      # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+```
+
+2. Correr el nodo indicando su nombre, puerto y la lista de vecinos (URLs de los otros 4 nodos):
+```bash
+   NODE_NAME="Nodo A" PORT=5001 NEIGHBORS="https://url-nodo-b.ngrok-free.app,https://url-nodo-c.ngrok-free.app,https://url-nodo-d.ngrok-free.app,https://url-nodo-e.ngrok-free.app" python app.py
+```
+
+3. Para pruebas entre computadoras distintas, exponer el nodo a internet con ngrok en una terminal aparte:
+```bash
+   ngrok http 5001
+```
+   Compartir la URL generada (`https://xxxx.ngrok-free.app`) con el resto del equipo para que la usen en su propio `NEIGHBORS`.
+
+## Cómo probar
+
+- Con Postman: `POST /messages` a la URL de un nodo, luego `GET /messages` en otro nodo distinto para confirmar que el mensaje se replicó.
+- Tolerancia a fallos: apagar un nodo (Ctrl+C), enviar un mensaje nuevo a otro nodo (debe funcionar sin errores), y verificar en los logs que el intento de replicar al nodo caído se ignoró sin detener el sistema.
+- Recuperación: levantar de nuevo el nodo caído y hacer `GET /sync` para que recupere los mensajes que se perdió.
+
+## Características de la Unidad I cubiertas
+
+| Tema visto en clase          | Cómo aparece en el proyecto                                                                            |
+|-------------------------------|------------------------------------------------------------------------------------                   |
+| Concurrencia                  | Varios usuarios pueden mandar mensajes al mismo tiempo a distintos nodos                              |
+| Transparencia de acceso       | El cliente puede conectarse a cualquiera de los 5 nodos sin diferencia                                |
+| Tolerancia a fallos           | Un nodo caído no detiene al resto (try/except en la replicación) + endpoint `/sync` para recuperación |
+| Escalabilidad                 | Escalado horizontal: se pueden agregar más nodos sin tocar los existentes                             | 
+| Modelo arquitectónico         | Cliente-servidor, con los 5 servidores actuando también como pares entre sí                           |
+| Modelo fundamental             | Procesos independientes (cada nodo) comunicados por red (HTTP), sin memoria compartida               |
+
+## Limitaciones conocidas
+
+- La sincronización (`/sync`) es manual, no automática al arrancar.
+- Los mensajes se guardan en memoria (no en base de datos), así que si un nodo se reinicia y no hace `/sync`, pierde su historial local hasta que lo pide de nuevo.
+- Las URLs de ngrok en el plan gratuito cambian en cada reinicio, por lo que `NEIGHBORS` debe actualizarse manualmente si algún nodo se reinicia.
+
+## Configuración de entorno
