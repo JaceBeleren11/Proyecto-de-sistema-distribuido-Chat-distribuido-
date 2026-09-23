@@ -48,6 +48,13 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 
 <img width="1483" height="762" alt="Captura de pantalla 2026-09-10 183323" src="https://github.com/user-attachments/assets/ec973602-14c2-4b3c-b0e1-276670913526" />
 
+### Creacion y prueba del primer nodo (A)
+<img width="960" height="1020" alt="Captura de pantalla 2026-09-15 190028" src="https://github.com/user-attachments/assets/0e8eb5b9-5f89-4ecf-90c3-c758a3cefc90" />
+<img width="960" height="1020" alt="Captura de pantalla 2026-09-15 190035" src="https://github.com/user-attachments/assets/7bb841ff-a057-46de-882c-9eee3be152e4" />
+<img width="960" height="1020" alt="Captura de pantalla 2026-09-15 190040 (1)" src="https://github.com/user-attachments/assets/c582d328-5b50-4ed9-8d2a-98b380a10949" />
+<img width="1920" height="1020" alt="Captura de pantalla 2026-09-15 190103" src="https://github.com/user-attachments/assets/9735e5fe-7ee2-4c04-a3f5-ac29aa9ade66" />
+<img width="1920" height="1020" alt="Captura de pantalla 2026-09-15 190050" src="https://github.com/user-attachments/assets/9a8147b6-a4b9-4ef1-958a-d6f6f8376c97" />
+
 ## Cómo correr el proyecto
 ## Endpoints
 
@@ -131,6 +138,3 @@ Se envía un post desde nodo C a nodo B
 Nodo B recibe el post del nodo C
 <img width="1274" height="718" alt="Captura de pantalla 2026-09-22 191910" src="https://github.com/user-attachments/assets/03ed125d-1aa0-4575-a95d-e4533ce947a0" />
 
-## Configuración de entorno
-
-<img width="1483" height="762" alt="Captura de pantalla 2026-09-10 183323" src="https://github.com/user-attachments/assets/ec973602-14c2-4b3c-b0e1-276670913526" />
