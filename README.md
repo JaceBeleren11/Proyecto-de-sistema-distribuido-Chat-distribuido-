@@ -88,10 +88,10 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 | Tema visto en clase          | Cómo aparece en el proyecto                                                                            |
 |-------------------------------|------------------------------------------------------------------------------------                   |
 | Concurrencia                  | Varios usuarios pueden mandar mensajes al mismo tiempo a distintos nodos                              |
-| Transparencia de acceso       | El cliente puede conectarse a cualquiera de los 5 nodos sin diferencia                                |
+| Transparencia de acceso       | El cliente puede conectarse a cualquiera de los nodos sin diferencia                                |
 | Tolerancia a fallos           | Un nodo caído no detiene al resto (try/except en la replicación) + endpoint `/sync` para recuperación |
 | Escalabilidad                 | Escalado horizontal: se pueden agregar más nodos sin tocar los existentes                             | 
-| Modelo arquitectónico         | Cliente-servidor, con los 5 servidores actuando también como pares entre sí                           |
+| Modelo arquitectónico         | Cliente-servidor, con los servidores actuando también como pares entre sí                           |
 | Modelo fundamental             | Procesos independientes (cada nodo) comunicados por red (HTTP), sin memoria compartida               |
 
 ## Limitaciones conocidas
@@ -101,3 +101,5 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 - Las URLs de ngrok en el plan gratuito cambian en cada reinicio, por lo que `NEIGHBORS` debe actualizarse manualmente si algún nodo se reinicia.
 
 ## Prueba del sistema
+Nodo A inicializado
+<img width="960" height="1020" alt="Captura de pantalla 2026-09-15 190040" src="https://github.com/user-attachments/assets/a1f12ed6-5bf7-4e35-86e4-ee5513ef94b8" />
