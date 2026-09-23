@@ -62,7 +62,7 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 ```bash
    cd "Nodo A"          # o Nodo B, C, D, E según corresponda
    python -m venv venv
-   source venv/bin/activate      # Windows: venv\Scripts\activate
+   venv\Scripts\activate
    pip install -r requirements.txt
 ```
 
@@ -75,7 +75,7 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 ```bash
    ngrok http 5001
 ```
-   Compartir la URL generada (`https://xxxx.ngrok-free.app`) con el resto del equipo para que la usen en su propio `NEIGHBORS`.
+   Compartir la URL generada (`https://xxxx.ngrok-free.dev`) con el resto del equipo para que la usen en su propio `NEIGHBORS`.
 
 ## Cómo probar
 
@@ -100,4 +100,4 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 - Los mensajes se guardan en memoria (no en base de datos), así que si un nodo se reinicia y no hace `/sync`, pierde su historial local hasta que lo pide de nuevo.
 - Las URLs de ngrok en el plan gratuito cambian en cada reinicio, por lo que `NEIGHBORS` debe actualizarse manualmente si algún nodo se reinicia.
 
-## Configuración de entorno
+## Prueba del sistema
