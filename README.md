@@ -128,7 +128,9 @@ Se apaga el nodo A
 Se envía un post desde nodo C a nodo B
 <img width="1600" height="950" alt="WhatsApp Image 2026-09-22 at 7 28 32 PM" src="https://github.com/user-attachments/assets/157264cc-e85a-4334-90de-05b453d23fd2" />
 
-El## Configuración de entorno
-
-<img width="1483" height="762" alt="Captura de pantalla 2026-09-10 183323" src="https://github.com/user-attachments/assets/ec973602-14c2-4b3c-b0e1-276670913526" /> nodo B recibe el post del nodo C
+Nodo B recibe el post del nodo C
 <img width="1274" height="718" alt="Captura de pantalla 2026-09-22 191910" src="https://github.com/user-attachments/assets/03ed125d-1aa0-4575-a95d-e4533ce947a0" />
+
+## Configuración de entorno
+
+<img width="1483" height="762" alt="Captura de pantalla 2026-09-10 183323" src="https://github.com/user-attachments/assets/ec973602-14c2-4b3c-b0e1-276670913526" />
