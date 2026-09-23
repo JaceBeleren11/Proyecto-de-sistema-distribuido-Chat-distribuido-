@@ -13,7 +13,7 @@ Proyecto integrador de Sistemas Distribuidos: un chat construido sobre varios no
 ## Stack tecnológico
 - Python 3
 - Flask
-- Docker (para levantar los nodos como contenedores aislados)
+- Docker
 - GitHub (control de versiones y entrega)
 - Postman (pruebas de endpoints)
 - ngrok (exponer un nodo a internet para pruebas de distribución geográfica real)
@@ -36,11 +36,11 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 
 <img width="2114" height="1409" alt="Nodos de Diagrama Secuencial" src="https://github.com/user-attachments/assets/c95ff2ad-a442-4a7c-9fbd-d380dc5074f7" />
 
-Diagrama utilizado real
+### Diagrama utilizado real
 <img width="961" height="669" alt="Diagrama Secuencial" src="https://github.com/user-attachments/assets/1d26fd41-7497-469c-982e-2b5970d26c24" />
 
 - El **cliente** puede conectarse a cualquiera de los 5 nodos.
-- Cada **nodo** corre en su propio puerto (5001–5005) o contenedor.
+- Cada **nodo** corre en su propio puerto (5001).
 - Los nodos **replican los mensajes entre sí** para mantener la misma información.
 - Si un nodo se apaga, el sistema **sigue funcionando** con los nodos restantes.
 
