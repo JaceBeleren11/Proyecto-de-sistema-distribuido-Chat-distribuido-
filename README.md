@@ -102,4 +102,7 @@ Los otros 4 nodos siguen funcionando con normalidad. Si la replicación hacia un
 
 ## Prueba del sistema
 Nodo A inicializado
-<img width="960" height="1020" alt="Captura de pantalla 2026-09-15 190040" src="https://github.com/user-attachments/assets/a1f12ed6-5bf7-4e35-86e4-ee5513ef94b8" />
+<img width="1483" height="762" alt="Captura de pantalla 2026-09-22 192044" src="https://github.com/user-attachments/assets/d11b3875-8c27-4d78-a100-44e70da4f514" />
+
+Nodo B inicializado
+
